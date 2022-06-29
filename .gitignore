@@ -1,0 +1,39 @@
+syntax: glob
+# vs code settings
+.vscode
+# idea workspace stores local user ui settings - ignore it
+.idea
+.idea/workspace.xml
+.idea/modules.xml
+# idea feature to create shelves
+.idea/shelf
+# idea ui designer
+.idea/uiDesigner.xml
+# imls are commited one time
+*.iml
+*webapp/build
+*node_modules
+.gradle
+build
+gradle-build
+logback-test.xml
+
+# дирректории созд. после запуска cypress
+analytics-web/cypress/plugins
+analytics-web/cypress/videos
+
+bin
+.etmp
+out
+.out
+
+.mbuild
+mbuild.user.yml
+mbuild.override.yml
+
+profiles-user.gradle.kts
+
+analytics-web/public/config.json
+
+.docker/
+/.idea/
