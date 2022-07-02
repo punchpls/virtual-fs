@@ -8,7 +8,7 @@ public class FileSystemMain {
     public static void main(String[] args) {
         FileSystemState fileSystemState = new FileSystemState();
 
-        CommandShell commandShell = new CommandShell(
+        CommandShell commandShell = new CommandShell(true,
                 new CreateFileCommand(fileSystemState),
                 new CreateFolderCommand(fileSystemState),
                 new ListCommand(fileSystemState),
@@ -18,6 +18,6 @@ public class FileSystemMain {
                 new RenameCommand(fileSystemState)) {
         };
 
-        commandShell.init();
+        commandShell.init(fileSystemState);
     }
 }

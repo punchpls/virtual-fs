@@ -27,6 +27,13 @@ public class CreateFileCommand implements FileSystemCommand {
             String fileName = inputPath.contains("/") ? inputPath.substring(inputPath.lastIndexOf("/") + 1) : inputPath;
             List<FileSystemNode> path = fileSystemState.buildPath(inputPath, false);
             if (path.get(path.size() - 1) instanceof Folder folder) {
+                if (fileName.equals("")){
+                    throw new FileSystemException("File cannot have a null name");
+                }
+                if (fileName.equals("..")){
+                    throw new FileSystemException("File cannot have control characters in the name");
+                }
+
                 File file = new File(fileName, folder);
                 if (folder.getChildren().get(fileName) == null) {
                     folder.addChild(file);

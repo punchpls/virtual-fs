@@ -1,6 +1,8 @@
 package edu.gavrilov.fs.shell;
 
 import edu.gavrilov.fs.command.Command;
+import edu.gavrilov.fs.command.fs.HistoryStackCommand;
+import edu.gavrilov.fs.state.FileSystemState;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ public class CommandShell {
 
     private final Map<String, Command> supportedCommands = new HashMap<>();
     private final Scanner scanner = new Scanner(System.in);
+    private boolean stackIsRequired = false;
 
     public CommandShell(Command... supportedCommands) {
         for (Command command : supportedCommands) {
@@ -17,14 +20,26 @@ public class CommandShell {
         }
     }
 
+    public CommandShell(boolean stackIsRequired, Command... supportedCommands) {
+        for (Command command : supportedCommands) {
+            registerCommand(command);
+        }
+        this.stackIsRequired = stackIsRequired;
+    }
+
     public void registerCommand(Command command) {
         this.supportedCommands.put(command.getName(), command);
     }
 
-    public void init() {
+    public void init(FileSystemState fileSystemState) {
         while (true) {
-            System.out.print("> ");
+            System.out.print(fileSystemState.getCurrentFolder());
+            System.out.print(" > ");
             String input = scanner.nextLine();
+            if (stackIsRequired){
+                HistoryStackCommand.
+            }
+
             CommandWithArguments commandWithArguments = CommandWithArguments.build(input);
             Command command = supportedCommands.get(commandWithArguments.getCommand());
             String[] args = commandWithArguments.getArgs();
