@@ -36,18 +36,17 @@ public class CommandShell {
             System.out.print(fileSystemState.getCurrentFolder());
             System.out.print(" > ");
             String input = scanner.nextLine();
-            if (stackIsRequired){
-                HistoryStackCommand.
-            }
-
             CommandWithArguments commandWithArguments = CommandWithArguments.build(input);
             Command command = supportedCommands.get(commandWithArguments.getCommand());
             String[] args = commandWithArguments.getArgs();
 
             if (command != null) {
+                if (stackIsRequired && !command.getName().equals("history")){
+                    HistoryStackCommand.addCommandToStack(input);
+                }
                 command.execute(args);
             } else {
-                System.err.println("Command not recognized");
+                System.out.println("Command not recognized");
             }
         }
     }

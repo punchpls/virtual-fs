@@ -8,14 +8,15 @@ public class FileSystemMain {
     public static void main(String[] args) {
         FileSystemState fileSystemState = new FileSystemState();
 
-        CommandShell commandShell = new CommandShell(true,
+        CommandShell commandShell = new CommandShell(
                 new CreateFileCommand(fileSystemState),
                 new CreateFolderCommand(fileSystemState),
                 new ListCommand(fileSystemState),
                 new ChangeFolderCommand(fileSystemState),
                 new PrintWorkingDirectoryCommand(fileSystemState),
                 new RemoveCommand(fileSystemState),
-                new RenameCommand(fileSystemState)) {
+                new RenameCommand(fileSystemState),
+                new HistoryStackCommand(fileSystemState)) {
         };
 
         commandShell.init(fileSystemState);
